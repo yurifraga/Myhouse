@@ -6,6 +6,7 @@ class Games extends CI_Controller {
     public function __construct()
     {
         parent::__construct();
+        permission();
         $this->load->model('games_model');
     }
 
@@ -35,7 +36,7 @@ class Games extends CI_Controller {
     public function store()
     {
         $game = $_POST;
-        $game["user_id"] = '1';       
+        $game["user_id"] = $_SESSION["Login_efetuado"]["id"];       
         $this->games_model->store($game);
         redirect("games");
     }
